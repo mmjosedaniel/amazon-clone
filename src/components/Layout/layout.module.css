@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #0f1111;
+}
+
+.image-container{
+  overflow: hidden; 
+  height: 54px; 
+  width: 140px;
+}
+
+.image {
+  margin: -34px 0 0 14px;
+}

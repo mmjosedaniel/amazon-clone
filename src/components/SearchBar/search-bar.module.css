@@ -1,0 +1,25 @@
+.search-bar {
+  display: flex;
+  width: 60vw;
+  padding: 10px;
+  margin: 0 6px;
+}
+
+.search-input {
+  width: 100%;
+}
+
+.search-button {
+  height: 100%;
+  white-space: nowrap;
+  font-size: 14px;
+  position: static;
+  float: none;
+  background-color: #febd69;
+  border: none;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #dc9c48;
+}
