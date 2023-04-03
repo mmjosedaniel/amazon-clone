@@ -4,16 +4,19 @@ import Products from './pages/Products';
 import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 import Layout from './components/Layout';
+import ProductsProvider, { useGetProducts } from './context/ProductsContext';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Layout>
+    <ProductsProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Layout>
+    </ProductsProvider>
   );
 }
 
