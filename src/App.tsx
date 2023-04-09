@@ -4,7 +4,7 @@ import Products from './pages/Products';
 import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 import Layout from './components/Layout';
-import ProductsProvider, { useGetProducts } from './context/ProductsContext';
+import ProductsProvider from './context/ProductsContext';
 
 function App() {
   return (

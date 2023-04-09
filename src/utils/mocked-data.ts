@@ -1,11 +1,4 @@
-type ProductType = {
-  id: number;
-  price: number;
-  name: string;
-  stars: number;
-  brand: string;
-  imageURL: string;
-};
+import { ProductType } from '../types/ProductType';
 
 const products: ProductType[] = [
   {
@@ -14,7 +7,7 @@ const products: ProductType[] = [
     name: 'One Pice Battle',
     stars: 5,
     brand: 'Konamy',
-    imageURL: ''
+    imageURL: 'https://http2.mlstatic.com/D_NQ_NP_891174-MLA53353949509_012023-O.webp'
   },
   {
     id: 2,
@@ -22,7 +15,7 @@ const products: ProductType[] = [
     name: 'Battletoads',
     stars: 3,
     brand: 'Electronic Arts',
-    imageURL: ''
+    imageURL: 'https://upload.wikimedia.org/wikipedia/en/e/e8/Battletoads_Coverart.png'
   },
   {
     id: 3,
@@ -30,7 +23,7 @@ const products: ProductType[] = [
     name: 'Play Station 5',
     stars: 4,
     brand: 'Sony',
-    imageURL: ''
+    imageURL: 'https://http2.mlstatic.com/D_NQ_NP_841787-MLA44484414455_012021-O.webp'
   },
   {
     id: 4,
@@ -38,7 +31,7 @@ const products: ProductType[] = [
     name: 'Dragon Ball',
     stars: 2,
     brand: 'Konamy',
-    imageURL: ''
+    imageURL: 'https://http2.mlstatic.com/D_NQ_NP_660421-MCO53641856525_022023-O.webp'
   }
 ];
 

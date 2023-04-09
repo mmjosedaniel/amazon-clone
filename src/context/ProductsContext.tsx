@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { ProductType } from '../types/ProductType';
 
 const ProductsContext = React.createContext([]);
 
@@ -11,7 +12,7 @@ const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
   return <ProductsContext.Provider value={data}>{children}</ProductsContext.Provider>;
 };
 
-const useGetProducts = () => {
+const useGetProducts = (): ProductType[] => {
   return useContext(ProductsContext);
 };
 

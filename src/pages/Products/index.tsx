@@ -1,14 +1,24 @@
+import { Col, Container, Row } from 'react-bootstrap';
 import { useGetProducts } from '../../context/ProductsContext';
+import CardForProducts from './CardForProducts';
 
 const Products = (): React.ReactElement => {
   const products = useGetProducts();
 
-  console.log(products);
-
   return (
-    <div>
-      <h2>This is my Products component</h2>
-    </div>
+    <Container>
+      <Row>
+        <Col sm={3} style={{ background: 'yellow' }}>
+          Col 1
+        </Col>
+
+        <Col>
+          {products.map((product) => (
+            <CardForProducts key={product.id} product={product} />
+          ))}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
