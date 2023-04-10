@@ -6,10 +6,14 @@ import { getData } from '../utils/getData';
 const ProductsContext = React.createContext<ProductType[]>([]);
 const SetProductContext = React.createContext({});
 
-const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [products, setProducts] = useState<ProductType[]>([]);
+const VisibleProductsContext = React.createContext<ProductType[]>([]);
+const SetVisibleProductContext = React.createContext({});
 
-  const data = getData();
+const data = getData();
+
+const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
+  const [products, setProducts] = useState<ProductType[]>(data);
+  const [visibleProducts, setVisibleProducts] = useState(data);
 
   useEffect(() => {
     setProducts(data);
@@ -17,7 +21,13 @@ const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ProductsContext.Provider value={products}>
-      <SetProductContext.Provider value={setProducts}>{children}</SetProductContext.Provider>
+      <SetProductContext.Provider value={setProducts}>
+        <VisibleProductsContext.Provider value={visibleProducts}>
+          <SetVisibleProductContext.Provider value={setVisibleProducts}>
+            {children}
+          </SetVisibleProductContext.Provider>
+        </VisibleProductsContext.Provider>
+      </SetProductContext.Provider>
     </ProductsContext.Provider>
   );
 };
@@ -30,5 +40,15 @@ const useSetProducts = () => {
   return useContext(SetProductContext) as React.Dispatch<React.SetStateAction<ProductType[]>>;
 };
 
+const useGetVisibleProducts = (): ProductType[] => {
+  return useContext(VisibleProductsContext);
+};
+
+const useSetVisibleProducts = () => {
+  return useContext(SetVisibleProductContext) as React.Dispatch<
+    React.SetStateAction<ProductType[]>
+  >;
+};
+
 export default ProductsProvider;
-export { useGetProducts, useSetProducts };
+export { useGetProducts, useSetProducts, useGetVisibleProducts, useSetVisibleProducts };

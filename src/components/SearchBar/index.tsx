@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from 'react';
-import { useSetProducts } from '../../context/ProductsContext';
+import { useSetProducts, useSetVisibleProducts } from '../../context/ProductsContext';
 import { getData } from '../../utils/getData';
 import classes from './search-bar.module.css';
 
@@ -7,6 +7,7 @@ const SearchBar = () => {
   const [searchValue, setSearchValue] = useState('');
   const products = getData();
   const setProducts = useSetProducts();
+  const setVisibleProducts = useSetVisibleProducts();
 
   const handleSearchImput = (event: { target: { value: SetStateAction<string> } }) => {
     setSearchValue(event.target.value);
@@ -17,6 +18,7 @@ const SearchBar = () => {
       product.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
     );
     setProducts(newProducts);
+    setVisibleProducts(newProducts);
   };
 
   console.log(searchValue);

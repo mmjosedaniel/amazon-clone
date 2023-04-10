@@ -1,10 +1,10 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { useGetProducts } from '../../context/ProductsContext';
+import { useGetVisibleProducts } from '../../context/ProductsContext';
 import CardForProducts from './CardForProducts';
 import StarsFilter from './StarsFilter';
 
 const Products = (): React.ReactElement => {
-  const products = useGetProducts();
+  const visibleProducts = useGetVisibleProducts();
 
   return (
     <Container>
@@ -14,7 +14,7 @@ const Products = (): React.ReactElement => {
         </Col>
 
         <Col>
-          {products.map((product) => (
+          {visibleProducts.map((product) => (
             <CardForProducts key={product.id} product={product} />
           ))}
         </Col>

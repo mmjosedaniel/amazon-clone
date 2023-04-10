@@ -1,8 +1,13 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useGetProducts, useSetVisibleProducts } from '../../context/ProductsContext';
 
 const StarsFilter = () => {
+  const products = useGetProducts();
+  const setVisibleProducts = useSetVisibleProducts();
+
   const handleFilterByStars = (stars: number) => {
-    console.log(stars);
+    const newVisibleProducts = products.filter((product) => product.stars >= stars);
+    setVisibleProducts(newVisibleProducts);
   };
 
   return (
@@ -10,7 +15,7 @@ const StarsFilter = () => {
       <Row>
         <Col>
           <Button type="button" onClick={() => handleFilterByStars(5)}>
-            5 estrellas
+            5 estrellas o más
           </Button>
         </Col>
       </Row>
@@ -18,7 +23,7 @@ const StarsFilter = () => {
       <Row>
         <Col>
           <Button type="button" onClick={() => handleFilterByStars(4)}>
-            4 estrellas
+            4 estrellas o más
           </Button>
         </Col>
       </Row>
@@ -26,7 +31,7 @@ const StarsFilter = () => {
       <Row>
         <Col>
           <Button type="button" onClick={() => handleFilterByStars(3)}>
-            3 estrellas
+            3 estrellas o más
           </Button>
         </Col>
       </Row>
@@ -34,7 +39,7 @@ const StarsFilter = () => {
       <Row>
         <Col>
           <Button type="button" onClick={() => handleFilterByStars(2)}>
-            2 estrellas
+            2 estrellas o más
           </Button>
         </Col>
       </Row>
@@ -42,7 +47,7 @@ const StarsFilter = () => {
       <Row>
         <Col>
           <Button type="button" onClick={() => handleFilterByStars(1)}>
-            1 estrellas
+            1 estrellas o más
           </Button>
         </Col>
       </Row>
