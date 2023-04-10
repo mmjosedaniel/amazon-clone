@@ -1,6 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { useGetProducts } from '../../context/ProductsContext';
 import CardForProducts from './CardForProducts';
+import StarsFilter from './StarsFilter';
 
 const Products = (): React.ReactElement => {
   const products = useGetProducts();
@@ -9,7 +10,7 @@ const Products = (): React.ReactElement => {
     <Container>
       <Row>
         <Col sm={3} style={{ background: 'yellow' }}>
-          Col 1
+          <StarsFilter />
         </Col>
 
         <Col>

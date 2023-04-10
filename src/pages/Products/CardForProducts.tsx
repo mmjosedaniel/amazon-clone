@@ -22,7 +22,10 @@ const CardForProducts = ({
 
           <Row>
             <Col>
-              <p>{price}</p>
+              <p>
+                <span>US$</span>
+                {` ${price}`}
+              </p>
             </Col>
           </Row>
 
