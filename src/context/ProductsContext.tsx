@@ -1,20 +1,34 @@
-import React, { useContext } from 'react';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductType } from '../types/ProductType';
+import { getData } from '../utils/getData';
 
-const ProductsContext = React.createContext([]);
+const ProductsContext = React.createContext<ProductType[]>([]);
+const SetProductContext = React.createContext({});
 
 const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
-  const fetchData = sessionStorage.getItem('products') || '[]';
-  const data = JSON.parse(fetchData);
+  const [products, setProducts] = useState<ProductType[]>([]);
 
-  // console.log(data);
+  const data = getData();
 
-  return <ProductsContext.Provider value={data}>{children}</ProductsContext.Provider>;
+  useEffect(() => {
+    setProducts(data);
+  }, []);
+
+  return (
+    <ProductsContext.Provider value={products}>
+      <SetProductContext.Provider value={setProducts}>{children}</SetProductContext.Provider>
+    </ProductsContext.Provider>
+  );
 };
 
 const useGetProducts = (): ProductType[] => {
   return useContext(ProductsContext);
 };
 
+const useSetProducts = () => {
+  return useContext(SetProductContext) as React.Dispatch<React.SetStateAction<ProductType[]>>;
+};
+
 export default ProductsProvider;
-export { useGetProducts };
+export { useGetProducts, useSetProducts };
