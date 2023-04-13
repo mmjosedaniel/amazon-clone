@@ -2,7 +2,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/ProductType';
 
 const CardForProducts = ({
-  product: { name: productName, price, imageURL }
+  product: { name: productName, price, imageURL, stars }
 }: {
   product: ProductType;
 }) => {
@@ -17,6 +17,12 @@ const CardForProducts = ({
           <Row>
             <Col>
               <p>{productName}</p>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <p>{stars}</p>
             </Col>
           </Row>
 

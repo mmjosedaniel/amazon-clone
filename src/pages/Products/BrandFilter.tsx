@@ -6,6 +6,7 @@ type Brand = { brand: string; id: number };
 
 const BrandFilter = () => {
   const [brandsForFilter, setBrandsForFilter] = useState<Brand[]>([]);
+  const [checkedBrands, setCheckedBrands] = useState<string[]>([]);
 
   const products = useGetProducts();
   const setVisibleProducts = useSetVisibleProducts();
@@ -21,11 +22,26 @@ const BrandFilter = () => {
     setBrandsForFilter(brandsList);
   }, []);
 
-  const handleBrandFilter = (brand: string) => {
-    const newVisibleProdcuts = products.filter((product) => product.brand === brand);
-
-    setVisibleProducts(newVisibleProdcuts);
+  const handleBrandFilter = (event: { target: { value: string; checked: boolean } }) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setCheckedBrands((prevValue) => [...prevValue, value]);
+    } else {
+      setCheckedBrands((prevValue) => prevValue.filter((brand) => brand !== value));
+    }
   };
+
+  useEffect(() => {
+    if (!checkedBrands.length) {
+      setVisibleProducts(products);
+    } else {
+      const newVisibleProdcuts = products.filter((product) =>
+        checkedBrands.includes(product.brand)
+      );
+      setVisibleProducts(newVisibleProdcuts);
+    }
+    console.log(!checkedBrands.length);
+  }, [checkedBrands]);
 
   return (
     <Container>
@@ -34,7 +50,13 @@ const BrandFilter = () => {
           <ul>
             {brandsForFilter.map((brand) => (
               <li key={brand.id}>
-                <Button onClick={() => handleBrandFilter(brand.brand)}>{brand.brand}</Button>
+                <input
+                  type="checkbox"
+                  value={brand.brand}
+                  id={`${brand.id}`}
+                  onChange={handleBrandFilter}
+                />
+                <label htmlFor={`${brand.id}`}>{brand.brand}</label>
               </li>
             ))}
           </ul>
