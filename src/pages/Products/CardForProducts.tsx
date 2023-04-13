@@ -22,7 +22,7 @@ const CardForProducts = ({
 
           <Row>
             <Col>
-              <p>{stars}</p>
+              <p>Stars: {stars}</p>
             </Col>
           </Row>
 
