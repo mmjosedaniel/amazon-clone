@@ -63,7 +63,7 @@ const useGetProductsInCart = (): ProductType[] => {
   return useContext(ProductsInCartContext);
 };
 
-const useSetProductsInCat = () => {
+const useSetProductsInCart = () => {
   return useContext(SetProductsInCartContext) as React.Dispatch<
     React.SetStateAction<ProductType[]>
   >;
@@ -76,5 +76,5 @@ export {
   useGetVisibleProducts,
   useSetVisibleProducts,
   useGetProductsInCart,
-  useSetProductsInCat
+  useSetProductsInCart
 };

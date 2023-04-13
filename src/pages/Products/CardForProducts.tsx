@@ -1,11 +1,29 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/ProductType';
+import { useGetProductsInCart, useSetProductsInCart } from '../../context/ProductsContext';
 
-const CardForProducts = ({
-  product: { name: productName, price, imageURL, stars }
-}: {
-  product: ProductType;
-}) => {
+const CardForProducts = ({ product }: { product: ProductType }) => {
+  const { name: productName, price, imageURL, stars } = product;
+
+  const setProductsInCart = useSetProductsInCart();
+  const productsInCart = useGetProductsInCart();
+
+  const handleAddProduct = (productToAdd: ProductType) => {
+    const isObjectDuplicated = productsInCart
+      .map((element) => element.id)
+      .includes(productToAdd.id);
+
+    if (isObjectDuplicated) {
+      setProductsInCart((prevState) =>
+        prevState.map((element) =>
+          element.id === productToAdd.id ? { ...element, amount: element.amount + 1 } : element
+        )
+      );
+    } else {
+      setProductsInCart((prevState) => [...prevState, { ...product, amount: 1 }]);
+    }
+  };
+
   return (
     <Container>
       <Row>
@@ -37,7 +55,7 @@ const CardForProducts = ({
 
           <Row>
             <Col>
-              <Button>Agregar al carrito</Button>
+              <Button onClick={() => handleAddProduct(product)}>Agregar al carrito</Button>
             </Col>
           </Row>
         </Col>

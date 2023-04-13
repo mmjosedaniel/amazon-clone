@@ -1,5 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { useGetVisibleProducts } from '../../context/ProductsContext';
+import { useGetProductsInCart, useGetVisibleProducts } from '../../context/ProductsContext';
 import CardForProducts from './CardForProducts';
 import StarsFilter from './StarsFilter';
 import BrandFilter from './BrandFilter';
@@ -18,7 +18,7 @@ const Products = (): React.ReactElement => {
 
         <Col>
           {visibleProducts.map((product) => (
-            <CardForProducts key={product.id} product={product} />
+            <CardForProducts key={`product-card-${product.id}`} product={product} />
           ))}
         </Col>
       </Row>

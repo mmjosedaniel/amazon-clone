@@ -5,5 +5,5 @@ export type ProductType = {
   stars: number;
   brand: string;
   imageURL: string;
-  amout?: number;
+  amount: number;
 };

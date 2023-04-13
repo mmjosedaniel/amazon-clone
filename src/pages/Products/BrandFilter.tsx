@@ -12,7 +12,6 @@ const BrandFilter = () => {
   const setVisibleProducts = useSetVisibleProducts();
 
   useEffect(() => {
-    console.log({ products });
     const newBrands = products.map((product) => {
       return { brand: product.brand, id: product.id };
     });
@@ -40,7 +39,6 @@ const BrandFilter = () => {
       );
       setVisibleProducts(newVisibleProdcuts);
     }
-    console.log(!checkedBrands.length);
   }, [checkedBrands]);
 
   return (
@@ -49,14 +47,14 @@ const BrandFilter = () => {
         <Col>
           <ul>
             {brandsForFilter.map((brand) => (
-              <li key={brand.id}>
+              <li key={`brand-list-item-${brand.id}`}>
                 <input
                   type="checkbox"
                   value={brand.brand}
-                  id={`${brand.id}`}
+                  id={`input-brand-${brand.id}`}
                   onChange={handleBrandFilter}
                 />
-                <label htmlFor={`${brand.id}`}>{brand.brand}</label>
+                <label htmlFor={`input-brand-${brand.id}`}>{brand.brand}</label>
               </li>
             ))}
           </ul>

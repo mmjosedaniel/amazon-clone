@@ -21,8 +21,6 @@ const SearchBar = () => {
     setVisibleProducts(newProducts);
   };
 
-  console.log(searchValue);
-
   return (
     <div className={classes['search-bar']}>
       <input
