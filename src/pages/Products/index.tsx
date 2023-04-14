@@ -10,7 +10,7 @@ const Products = (): React.ReactElement => {
   return (
     <Container>
       <Row>
-        <Col sm={3} style={{ background: 'yellow' }}>
+        <Col sm={3}>
           <StarsFilter />
 
           <BrandFilter />

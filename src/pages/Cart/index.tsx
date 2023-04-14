@@ -15,7 +15,7 @@ const Cart = (): React.ReactElement => {
           ))}
         </Col>
 
-        <Col sm={3} style={{ background: 'yellow' }}>
+        <Col sm={3}>
           <SaleDetails productsInCart={productsInCart} />
         </Col>
       </Row>
