@@ -1,7 +1,9 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/ProductType';
+import { useSetProductsInCart } from '../../context/ProductsContext';
 
 const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
+  const setProductsInCart = useSetProductsInCart();
   const [amoutOfProducts, totalPrice] = productsInCart.reduce(
     ([amoutOfProducts, totalPrice], currentValue) => [
       amoutOfProducts + currentValue.amount,
@@ -9,6 +11,11 @@ const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
     ],
     [0, 0]
   );
+
+  const handlePayAction = () => {
+    setProductsInCart([]);
+  };
+
   return (
     <Container>
       <Row>
@@ -18,6 +25,12 @@ const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
             {amoutOfProducts === 1 ? `${amoutOfProducts} producto` : `${amoutOfProducts} productos`}
             ): <strong>US${totalPrice}</strong>
           </p>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <Button onClick={handlePayAction}>Proceder al pago</Button>
         </Col>
       </Row>
     </Container>
