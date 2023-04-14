@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { useGetProductsInCart } from '../../context/ProductsContext';
 import CardForCart from './CardForCart';
+import SaleDetails from './SaleDetails';
 
 const Cart = (): React.ReactElement => {
   const productsInCart = useGetProductsInCart();
@@ -15,7 +16,7 @@ const Cart = (): React.ReactElement => {
         </Col>
 
         <Col sm={3} style={{ background: 'yellow' }}>
-          <a>Total</a>
+          <SaleDetails productsInCart={productsInCart} />
         </Col>
       </Row>
     </Container>
