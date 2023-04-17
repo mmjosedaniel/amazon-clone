@@ -29,7 +29,7 @@ const CardForProducts = ({ product }: { product: ProductType }) => {
       setProductsInCart((prevState) => [...prevState, { ...product, amount: 1 }]);
     }
 
-    setShowToaster({ show: true, message: 'Your product has been added' });
+    setShowToaster({ show: true, message: 'Su producto ha sido agregado' });
   };
 
   return (

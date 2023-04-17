@@ -1,6 +1,6 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/ProductType';
-import { useSetProductsInCart } from '../../context/ProductsContext';
+import { useSetProductsInCart, useSetShowToaster } from '../../context/ProductsContext';
 
 const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
   const setProductsInCart = useSetProductsInCart();
@@ -12,8 +12,11 @@ const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
     [0, 0]
   );
 
+  const setShowToaster = useSetShowToaster();
+
   const handlePayAction = () => {
     setProductsInCart([]);
+    setShowToaster({ show: true, message: 'La compra fue hecha satisfactoriamente' });
   };
 
   return (
