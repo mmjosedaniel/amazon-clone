@@ -4,12 +4,30 @@
   background-color: #0f1111;
 }
 
-.image-container{
-  overflow: hidden; 
-  height: 54px; 
+.cart-image-container {
+  display: flex;
+  overflow: hidden;
+  height: 38px;
+  width: 50px;
+}
+
+.number-of-products-container {
+  position: absolute;
+  right: 21px;
+  top: 4px;
+  color: white;
+}
+
+.image-container {
+  overflow: hidden;
+  height: 54px;
   width: 140px;
 }
 
 .image {
   margin: -34px 0 0 14px;
+}
+
+.cart-image {
+  margin: -292px 0 0 -8px;
 }

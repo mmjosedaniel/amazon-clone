@@ -33,7 +33,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <nav>
           <ul>
             <li>
-              <Link to="cart">Cart: {amoutOfProductsInCart}</Link>
+              <Link to="cart">
+                <div className={classes['cart-image-container']}>
+                  <img
+                    src="https://m.media-amazon.com/images/G/01/gno/sprites/nav-sprite-global-1x-reorg3._CB634609711_.png"
+                    alt="amazon icon"
+                    width="315"
+                    height="405"
+                    className={classes['cart-image']}
+                  />
+                  <div className={classes['number-of-products-container']}>
+                    {amoutOfProductsInCart}
+                  </div>
+                </div>
+              </Link>
             </li>
           </ul>
         </nav>
