@@ -1,9 +1,15 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/ProductType';
-import { useGetProductsInCart, useSetProductsInCart } from '../../context/ProductsContext';
+import {
+  useGetProductsInCart,
+  useSetProductsInCart,
+  useSetShowToaster
+} from '../../context/ProductsContext';
 
 const CardForProducts = ({ product }: { product: ProductType }) => {
   const { name: productName, price, imageURL, stars } = product;
+
+  const setShowToaster = useSetShowToaster();
 
   const setProductsInCart = useSetProductsInCart();
   const productsInCart = useGetProductsInCart();
@@ -22,6 +28,8 @@ const CardForProducts = ({ product }: { product: ProductType }) => {
     } else {
       setProductsInCart((prevState) => [...prevState, { ...product, amount: 1 }]);
     }
+
+    setShowToaster({ show: true, message: 'Your product has been added' });
   };
 
   return (

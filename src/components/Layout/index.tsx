@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar';
 
 import classes from './layout.module.css';
 import { useGetProductsInCart } from '../../context/ProductsContext';
+import Toaster from '../Toaster';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const productInCart = useGetProductsInCart();
@@ -38,6 +39,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </nav>
       </header>
 
+      <Toaster />
       <main>{children}</main>
     </Fragment>
   );

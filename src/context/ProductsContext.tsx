@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductType } from '../types/ProductType';
 import { getData } from '../utils/getData';
+import { ShowToasteType } from '../types/ShowToasterType';
 
 const ProductsContext = React.createContext<ProductType[]>([]);
 const SetProductContext = React.createContext({});
@@ -12,6 +13,9 @@ const SetVisibleProductContext = React.createContext({});
 const ProductsInCartContext = React.createContext<ProductType[]>([]);
 const SetProductsInCartContext = React.createContext({});
 
+const ShowToasterContext = React.createContext<ShowToasteType>({ show: false, message: '' });
+const SetShowToasterContext = React.createContext({});
+
 const data = getData();
 
 const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
@@ -19,6 +23,8 @@ const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const [visibleProducts, setVisibleProducts] = useState(data);
 
   const [productsInCart, setProductsInCart] = useState<ProductType[]>([]);
+
+  const [showToaster, setShowToaster] = useState<ShowToasteType>({ show: false, message: '' });
 
   useEffect(() => {
     setProducts(data);
@@ -31,7 +37,11 @@ const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
           <SetVisibleProductContext.Provider value={setVisibleProducts}>
             <ProductsInCartContext.Provider value={productsInCart}>
               <SetProductsInCartContext.Provider value={setProductsInCart}>
-                {children}
+                <ShowToasterContext.Provider value={showToaster}>
+                  <SetShowToasterContext.Provider value={setShowToaster}>
+                    {children}
+                  </SetShowToasterContext.Provider>
+                </ShowToasterContext.Provider>
               </SetProductsInCartContext.Provider>
             </ProductsInCartContext.Provider>
           </SetVisibleProductContext.Provider>
@@ -69,6 +79,14 @@ const useSetProductsInCart = () => {
   >;
 };
 
+const useGetShowToaster = (): ShowToasteType => {
+  return useContext(ShowToasterContext);
+};
+
+const useSetShowToaster = () => {
+  return useContext(SetShowToasterContext) as React.Dispatch<React.SetStateAction<ShowToasteType>>;
+};
+
 export default ProductsProvider;
 export {
   useGetProducts,
@@ -76,5 +94,7 @@ export {
   useGetVisibleProducts,
   useSetVisibleProducts,
   useGetProductsInCart,
-  useSetProductsInCart
+  useSetProductsInCart,
+  useGetShowToaster,
+  useSetShowToaster
 };
