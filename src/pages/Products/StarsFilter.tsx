@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
 import { useGetProducts, useSetVisibleProducts } from '../../context/ProductsContext';
 
 const StarsFilter = () => {
@@ -11,47 +11,39 @@ const StarsFilter = () => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Button type="button" onClick={() => handleFilterByStars(5)}>
-            5 estrellas o más
-          </Button>
-        </Col>
-      </Row>
+    <Stack gap={3} style={{ margin: '20px' }}>
+      <h6>Reseña del cliente:</h6>
 
-      <Row>
-        <Col>
-          <Button type="button" onClick={() => handleFilterByStars(4)}>
-            4 estrellas o más
-          </Button>
-        </Col>
-      </Row>
+      <div>
+        <Button type="button" variant="light" onClick={() => handleFilterByStars(5)}>
+          5 estrellas o más
+        </Button>
+      </div>
 
-      <Row>
-        <Col>
-          <Button type="button" onClick={() => handleFilterByStars(3)}>
-            3 estrellas o más
-          </Button>
-        </Col>
-      </Row>
+      <div>
+        <Button type="button" variant="light" onClick={() => handleFilterByStars(4)}>
+          4 estrellas o más
+        </Button>
+      </div>
 
-      <Row>
-        <Col>
-          <Button type="button" onClick={() => handleFilterByStars(2)}>
-            2 estrellas o más
-          </Button>
-        </Col>
-      </Row>
+      <div>
+        <Button type="button" variant="light" onClick={() => handleFilterByStars(3)}>
+          3 estrellas o más
+        </Button>
+      </div>
 
-      <Row>
-        <Col>
-          <Button type="button" onClick={() => handleFilterByStars(1)}>
-            1 estrellas o más
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+      <div>
+        <Button type="button" variant="light" onClick={() => handleFilterByStars(2)}>
+          2 estrellas o más
+        </Button>
+      </div>
+
+      <div>
+        <Button type="button" variant="light" onClick={() => handleFilterByStars(1)}>
+          1 estrellas o más
+        </Button>
+      </div>
+    </Stack>
   );
 };
 

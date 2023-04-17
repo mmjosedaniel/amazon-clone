@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
 import { useGetProducts, useSetVisibleProducts } from '../../context/ProductsContext';
 import { useEffect, useState } from 'react';
 
@@ -42,25 +42,21 @@ const BrandFilter = () => {
   }, [checkedBrands]);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <ul>
-            {brandsForFilter.map((brand) => (
-              <li key={`brand-list-item-${brand.id}`}>
-                <input
-                  type="checkbox"
-                  value={brand.brand}
-                  id={`input-brand-${brand.id}`}
-                  onChange={handleBrandFilter}
-                />
-                <label htmlFor={`input-brand-${brand.id}`}>{brand.brand}</label>
-              </li>
-            ))}
-          </ul>
-        </Col>
-      </Row>
-    </Container>
+    <Stack gap={2} style={{ margin: '20px' }}>
+      <h6>Marcas:</h6>
+
+      {brandsForFilter.map((brand) => (
+        <div key={`brand-list-item-${brand.id}`}>
+          <input
+            type="checkbox"
+            value={brand.brand}
+            id={`input-brand-${brand.id}`}
+            onChange={handleBrandFilter}
+          />
+          <label htmlFor={`input-brand-${brand.id}`}>{brand.brand}</label>
+        </div>
+      ))}
+    </Stack>
   );
 };
 
