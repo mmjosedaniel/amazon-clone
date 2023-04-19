@@ -1,9 +1,12 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/ProductType';
 import { useSetProductsInCart, useSetShowToaster } from '../../context/ProductsContext';
+import { useNavigate } from 'react-router-dom';
 
 const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
+  const navigate = useNavigate();
   const setProductsInCart = useSetProductsInCart();
+
   const [amoutOfProducts, totalPrice] = productsInCart.reduce(
     ([amoutOfProducts, totalPrice], currentValue) => [
       amoutOfProducts + currentValue.amount,
@@ -16,6 +19,7 @@ const SaleDetails = ({ productsInCart }: { productsInCart: ProductType[] }) => {
 
   const handlePayAction = () => {
     setProductsInCart([]);
+    navigate('/');
     setShowToaster({ show: true, message: 'La compra fue hecha satisfactoriamente' });
   };
 
